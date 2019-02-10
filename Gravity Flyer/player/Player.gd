@@ -1,19 +1,49 @@
 extends KinematicBody2D
 
-const SPEED = 120
-
+const initialSpeed = 80
 var moveDirection = Vector2(0, 0)
+var velocity = Vector2(0, 0)
+var gravity = .92
+var previous = "none"
+
 
 func _physics_process(delta):
-	controls_loop()
-	movement_loop()
+	var left = Input.is_action_pressed("ui_left")
+	var right = Input.is_action_pressed("ui_right")
 
-func controls_loop():
-	var LEFT = Input.is_action_pressed("ui_left")
-	var RIGHT = Input.is_action_pressed("ui_right")
+	controls_loop(left, right)
+	movement_loop(left, right)
+
+func controls_loop(left, right):
+	moveDirection.x = -int(left) + int(right)
+
+func movement_loop(left, right):
+	if left:
+		if previous == "left":
+			if velocity.x < 0:
+				velocity.x = velocity.x / gravity
+			else:
+				velocity.x -= initialSpeed
+		else:
+			velocity.x -= initialSpeed
+		
+		previous = "left"
 	
-	moveDirection.x = -int(LEFT) + int(RIGHT)
-
-func movement_loop():
-	var motion = moveDirection.normalized() * SPEED
-	move_and_slide(motion, Vector2(0, 0))
+	if right:
+		if previous == "right":
+			if velocity.x > 0:
+				velocity.x = velocity.x / gravity
+			else:
+				velocity.x += initialSpeed
+		else:
+			velocity.x += initialSpeed
+		
+		previous = "right"
+	
+	if !left and !right:
+		velocity.x *= gravity
+		previous = "none"
+	
+	print(velocity.x)
+	
+	move_and_slide(velocity, Vector2(0, 0))
