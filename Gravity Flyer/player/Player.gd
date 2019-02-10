@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-const initialSpeed = 80
+const initialSpeed = 120
 var moveDirection = Vector2(0, 0)
 var velocity = Vector2(0, 0)
-var gravity = .92
+var gravity = .90
 var previous = "none"
 
 
@@ -24,7 +24,8 @@ func movement_loop(left, right):
 				velocity.x = velocity.x / gravity
 			else:
 				velocity.x -= initialSpeed
-		else:
+		
+		if !velocity.x < -initialSpeed: # Subtracting from other side
 			velocity.x -= initialSpeed
 		
 		previous = "left"
@@ -35,7 +36,7 @@ func movement_loop(left, right):
 				velocity.x = velocity.x / gravity
 			else:
 				velocity.x += initialSpeed
-		else:
+		if !velocity.x > initialSpeed: # Adding from other side
 			velocity.x += initialSpeed
 		
 		previous = "right"
