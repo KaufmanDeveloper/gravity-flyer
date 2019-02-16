@@ -5,7 +5,11 @@ var moveDirection = Vector2(0, 0)
 var velocity = Vector2(0, 0)
 var gravity = .90
 var previous = "none"
+var previousAnimation = "right"
+var playingAnimation = "idleright"
 
+func _ready():
+	$Animation.play(playingAnimation)
 
 func _physics_process(delta):
 	var left = Input.is_action_pressed("ui_left")
@@ -31,6 +35,12 @@ func use_item(item, side):
 
 func controls_loop(left, right):
 	moveDirection.x = -int(left) + int(right)
+	if left and !right and previousAnimation == "right":
+		previousAnimation = "left"
+		$Animation.play("idleleft")
+	elif right and !left and previousAnimation == "left":
+		previousAnimation = "right"
+		$Animation.play("idleright")
 
 func movement_loop(left, right):
 	if left:

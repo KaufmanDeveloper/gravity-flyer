@@ -9,8 +9,7 @@
 [node name="Player" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 240, 400 )
-scale = Vector2( 2, 2 )
-_sections_unfolded = [ "Transform", "Z Index" ]
+_sections_unfolded = [ "Z Index" ]
 
 [node name="TileMap" type="TileMap" parent="." index="1"]
 
