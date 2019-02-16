@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -40, -25 ), Vector2( -20, 15 ) ]
+"values": [ Vector2( -40, -40 ), Vector2( -20, 15 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 15, -20 ), Vector2( 15, 10 ) ]
+"values": [ Vector2( 40, -40 ), Vector2( 20, 15 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Area/CollisionShape2D:disabled")
@@ -83,9 +83,11 @@ extents = Vector2( 3, 12 )
 
 [node name="Sword" type="Node2D" index="0"]
 
+rotation = 1.91986
 scale = Vector2( 2.5, 2.5 )
+z_index = 10
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Animation" type="AnimationPlayer" parent="." index="0"]
 
