@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+const TYPE = "PLAYER"
 const initialSpeed = 120
 var moveDirection = Vector2(0, 0)
 var velocity = Vector2(0, 0)

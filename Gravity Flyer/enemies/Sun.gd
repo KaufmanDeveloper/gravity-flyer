@@ -3,7 +3,7 @@ extends RigidBody2D
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-
+const TYPE = "ENEMY"
 var offset = Vector2(0, 0)
 var impulse = Vector2(200, 200)
 var startingPosition = Vector2(100, 0)
