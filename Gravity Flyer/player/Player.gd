@@ -10,6 +10,7 @@ var playingAnimation = "idleright"
 
 func _ready():
 	$Animation.play(playingAnimation)
+	$BlinkAnimation.play("blink")
 
 func _physics_process(delta):
 	var left = Input.is_action_pressed("ui_left")
