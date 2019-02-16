@@ -47,4 +47,5 @@ func movement_loop(left, right):
 	
 	print(velocity.x)
 	
-	move_and_slide(velocity, Vector2(0, 0))
+	if !move_and_slide(velocity, Vector2(0, 0)):
+		velocity = Vector2(0, 0) # Reinitialize if has collided
