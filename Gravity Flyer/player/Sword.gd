@@ -4,8 +4,8 @@ const TYPE = "SWORD"
 
 var maxAmount = 1 # How many of this item can be active at once
 var side = "right"
-var impulse = Vector2(200, 200)
-var startingPosition = Vector2(100, 0)
+var impulse = Vector2(200, 300)
+var hasHit = false
 
 func _ready():
 	$Animation.connect("animation_finished", self, "destroy")
@@ -15,8 +15,9 @@ func _process(delta):
 	for area in $Area.get_overlapping_areas():
 		var body = area.get_parent()
 		if body.get("TYPE"):
-			if body.get("TYPE") == "ENEMY":
+			if body.get("TYPE") == "ENEMY" and !hasHit:
 				body.apply_impulse(Vector2(0, 0), impulse)
+				hasHit = true
 
 func destroy(animation):
 #	if get_parent().has_method("state_swing"):
