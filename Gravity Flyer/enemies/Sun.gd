@@ -5,8 +5,8 @@ extends RigidBody2D
 # var b = "textvar"
 
 var offset = Vector2(0, 0)
-var impulse = Vector2(400, 20)
-var startingPosition = Vector2(100, 100)
+var impulse = Vector2(200, 200)
+var startingPosition = Vector2(100, 0)
 
 func _ready():
 	$Animation.play("idle")
