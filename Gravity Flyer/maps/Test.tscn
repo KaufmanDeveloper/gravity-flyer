@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://maps/Test.gd" type="Script" id=1]
 [ext_resource path="res://maps/ParallaxLayer.gd" type="Script" id=2]
@@ -6,8 +6,17 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/Wall.tres" type="TileSet" id=5]
 [ext_resource path="res://system/Spawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://fonts/munro.ttf" type="DynamicFontData" id=7]
 
-[node name="Test" type="Node"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 64
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 7 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Test" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -70,5 +79,27 @@ __meta__ = {
 }
 
 [node name="Spawner" parent="." index="3" instance=ExtResource( 6 )]
+
+[node name="ScoreLabel" type="Label" parent="." index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 240.0
+margin_right = 40.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 1 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Margin", "custom_fonts" ]
 
 

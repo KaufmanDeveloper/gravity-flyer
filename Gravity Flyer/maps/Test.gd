@@ -11,6 +11,7 @@ func _process(delta):
 	if timer >= 120 and !gameOver:
 		score += 1
 		timer = 0
+		$ScoreLabel.text = str(score)
 	else:
 		timer += 1
 
