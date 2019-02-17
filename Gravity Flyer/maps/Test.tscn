@@ -55,8 +55,9 @@ _sections_unfolded = [ "Offset" ]
 position = Vector2( 240, 400 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="TileMap" type="TileMap" parent="." index="2"]
+[node name="TileMapWidth" type="TileMap" parent="." index="2"]
 
+scale = Vector2( 10, 1 )
 mode = 0
 tile_set = ExtResource( 5 )
 cell_size = Vector2( 48, 48 )
@@ -73,14 +74,65 @@ collision_layer = 1
 collision_mask = 1
 occluder_light_mask = 1
 format = 1
-tile_data = PoolIntArray( -65537, 0, 0, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 0, -131068, 0, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 0, 0, -131062, 0, 0, -1, 0, 0, -65526, 0, 0, 65535, 0, 0, 10, 0, 0, 131071, 0, 0, 65546, 0, 0, 196607, 0, 0, 131082, 0, 0, 262143, 0, 0, 196618, 0, 0, 327679, 0, 0, 262154, 0, 0, 393215, 0, 0, 327690, 0, 0, 458751, 0, 0, 393226, 0, 0, 524287, 0, 0, 458762, 0, 0, 589823, 0, 0, 524298, 0, 0, 655359, 0, 0, 589834, 0, 0, 720895, 0, 0, 655370, 0, 0, 786431, 0, 0, 720906, 0, 0, 851967, 0, 0, 786442, 0, 0, 917503, 0, 0, 851978, 0, 0, 983039, 0, 0, 917514, 0, 0, 1048575, 0, 0, 983050, 0, 0, 1114111, 0, 0, 1048586, 0, 0, 1179647, 0, 0, 1114112, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1114120, 0, 0, 1114121, 0, 0, 1114122, 0, 0 )
+tile_data = PoolIntArray( -65536, 0, 0 )
+_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Spawner" parent="." index="3" instance=ExtResource( 6 )]
+[node name="TileMapBottom" type="TileMap" parent="." index="3"]
 
-[node name="ScoreLabel" type="Label" parent="." index="4"]
+position = Vector2( 0, -15.5 )
+scale = Vector2( 10, 1 )
+mode = 0
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -65536, 0, 0, 1114112, 0, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="TileMapHeight" type="TileMap" parent="." index="4"]
+
+scale = Vector2( 1, 17 )
+mode = 0
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 48, 48 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65535, 0, 0, 10, 0, 0, 1114112, 0, 0 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Spawner" parent="." index="5" instance=ExtResource( 6 )]
+
+[node name="ScoreLabel" type="Label" parent="." index="6"]
 
 anchor_left = 0.0
 anchor_top = 0.0
