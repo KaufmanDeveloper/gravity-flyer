@@ -6,7 +6,7 @@
 [ext_resource path="res://environment/Wall.tres" type="TileSet" id=4]
 [ext_resource path="res://system/Spawner.tscn" type="PackedScene" id=5]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 

@@ -32,14 +32,14 @@ radius = 25.0
 custom_solver_bias = 0.0
 radius = 25.0
 
-[node name="Sun" type="RigidBody2D"]
+[node name="Sun" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 3
 collision_mask = 3
 mode = 0
 mass = 0.8
-friction = 0.2
+friction = 0.0
 bounce = 1.0
 gravity_scale = 0.0
 custom_integrator = false
