@@ -18,10 +18,10 @@ func _process(delta):
 			if body.get("TYPE") == "ENEMY" and !hasHit:
 				if $Animation.current_animation == "swingleft":
 					impulse = Vector2(-300, 300)
+				body.set_linear_velocity(Vector2(0, 0))
+				body.set_angular_velocity(0)
 				body.apply_impulse(Vector2(0, 0), impulse)
 				hasHit = true
 
 func destroy(animation):
-#	if get_parent().has_method("state_swing"):
-#		get_parent().state = "default"
 	queue_free() # Delete itself
