@@ -8,22 +8,29 @@ var gravity = .95
 var previous = "none"
 var previousAnimation = "right"
 var playingAnimation = "idleright"
+var died = false
 
 func _ready():
+	$Sprite.visible = true
+	died = false
 	$Animation.play(playingAnimation)
 	$BlinkAnimation.play("blink")
 
 func _physics_process(delta):
-	var left = Input.is_action_pressed("ui_left")
-	var right = Input.is_action_pressed("ui_right")
+	if !died:
+		var left = Input.is_action_pressed("ui_left")
+		var right = Input.is_action_pressed("ui_right")
 
-	controls_loop(left, right)
-	movement_loop(left, right)
+		controls_loop(left, right)
+		movement_loop(left, right)
+		collision_loop()
 	
-	if Input.is_action_just_pressed("swipe"):
+		if Input.is_action_just_pressed("swipe"):
 		# use_item(preload("res://items/Huff.tscn"))
-		use_item(preload("res://player/Sword.tscn"), "right")
-		use_item(preload("res://player/Sword.tscn"), "left")
+			use_item(preload("res://player/Sword.tscn"), "right")
+			use_item(preload("res://player/Sword.tscn"), "left")
+	
+
 
 func use_item(item, side):
 	var newItem = item.instance() # Argument is a direct path to that item scene
@@ -72,7 +79,22 @@ func movement_loop(left, right):
 		velocity.x *= gravity
 		previous = "none"
 	
-#	print(velocity.x)
-	
 	if !move_and_slide(velocity, Vector2(0, 0)):
 		velocity = Vector2(0, 0) # Reinitialize if has collided
+
+func collision_loop():
+	if get_slide_collision(0):
+		var collider = get_slide_collision(0).collider
+		if collider.get("TYPE") == "ENEMY":
+			player_death()
+	elif get_slide_collision(1):
+		var collider = get_slide_collision(0).collider
+		if collider.get("TYPE") == "ENEMY":
+			player_death()
+
+func player_death():
+	died = true
+	$Animation.stop()
+	$BlinkAnimation.stop()
+	$DeathAnimation.play("death")
+	set_collision_mask_bit(3, 3)
