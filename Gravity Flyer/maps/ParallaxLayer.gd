@@ -10,7 +10,6 @@ func _ready():
 	pass
 
 func _process(delta):
-	print(position)
 	if position == Vector2(0, -800):
 		position = Vector2(0, -2)
 	else: position = Vector2(position.x, position.y - 2)
