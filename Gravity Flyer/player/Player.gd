@@ -104,6 +104,7 @@ func player_death():
 	if !deathSoundPlayed:
 		$DeathSound.playing = true
 		deathSoundPlayed = true
+
 	$Animation.stop()
 	$BlinkAnimation.stop()
 	$DeathAnimation.play("death")
