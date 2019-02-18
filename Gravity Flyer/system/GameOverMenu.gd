@@ -1,6 +1,7 @@
 extends Control
 
 var resultText = "Try harder next time..."
+var currentScore = Global.score
 
 func _ready():
 	$ScoreDisplay.text = "Your score: " + str(Global.score)
@@ -17,6 +18,17 @@ func _ready():
 		resultText = "You're a legend. Tell all your friends!"
 	
 	$ResultDisplay.text = resultText
+	
+	save_this_high_score()
+	
+	$HighScoreDisplay.text = "High Score: " + str(Global.highScore)
+	
+	Global.score = 0
 
 func _on_Replay_pressed():
 	get_tree().change_scene("res://maps/Test.tscn")
+
+func save_this_high_score():
+	if currentScore > Global.highScore:
+		Global.highScore = currentScore
+		Global.save_high_score()
