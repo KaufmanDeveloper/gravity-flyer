@@ -11,7 +11,7 @@ config_version=3
 [application]
 
 config/name="Gravity Flyer"
-run/main_scene="res://maps/Test.tscn"
+run/main_scene="res://system/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
