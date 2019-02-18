@@ -19,13 +19,16 @@ func _ready():
 	
 	$ResultDisplay.text = resultText
 	
-	save_high_score()
+	save_this_high_score()
+	
+	$HighScoreDisplay.text = "High Score: " + str(Global.highScore)
+	
+	Global.score = 0
 
 func _on_Replay_pressed():
 	get_tree().change_scene("res://maps/Test.tscn")
 
-func save_high_score():
-	var savegame = File.new()
-	var save_path = "user://savegame.save"
-	var save_data = {"highscore": currentScore}
-	Global.score = 0
+func save_this_high_score():
+	if currentScore > Global.highScore:
+		Global.highScore = currentScore
+		Global.save_high_score()
