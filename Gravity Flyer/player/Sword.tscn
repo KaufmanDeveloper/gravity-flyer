@@ -81,7 +81,7 @@ tracks/2/keys = {
 custom_solver_bias = 0.0
 extents = Vector2( 3, 12 )
 
-[node name="Sword" type="Node2D"]
+[node name="Sword" type="Node2D" index="0"]
 
 position = Vector2( 20, 15 )
 rotation = 2.61799
@@ -108,6 +108,7 @@ texture = ExtResource( 2 )
 
 [node name="Area" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

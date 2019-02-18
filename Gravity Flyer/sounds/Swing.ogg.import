@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Swing.ogg-7fd416954e94fda53abc0f099d957b1a.oggstr" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

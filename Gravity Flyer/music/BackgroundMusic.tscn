@@ -3,7 +3,7 @@
 [ext_resource path="res://music/BackgroundMusic.gd" type="Script" id=1]
 [ext_resource path="res://music/Wo Dude Theme Loop.wav" type="AudioStream" id=2]
 
-[node name="BackgroundMusic" type="Node" index="0"]
+[node name="BackgroundMusic" type="Node"]
 
 script = ExtResource( 1 )
 
