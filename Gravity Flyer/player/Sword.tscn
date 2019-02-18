@@ -108,6 +108,7 @@ texture = ExtResource( 2 )
 
 [node name="Area" type="Area2D" parent="." index="2"]
 
+editor/display_folded = true
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0

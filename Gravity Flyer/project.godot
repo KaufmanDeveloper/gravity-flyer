@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://system/Global.gd"
+BackgroundMusic="*res://music/BackgroundMusic.tscn"
 
 [display]
 

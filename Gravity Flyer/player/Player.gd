@@ -9,6 +9,8 @@ var previous = "none"
 var previousAnimation = "right"
 var playingAnimation = "idleright"
 var died = false
+var swingTimer = 30
+var deathSoundPlayed = false
 
 func _ready():
 	$Sprite.visible = true
@@ -25,10 +27,15 @@ func _physics_process(delta):
 		movement_loop(left, right)
 		collision_loop()
 	
-		if Input.is_action_just_pressed("swipe"):
+		if Input.is_action_just_pressed("swipe") and swingTimer >= 30:
 		# use_item(preload("res://items/Huff.tscn"))
 			use_item(preload("res://player/Sword.tscn"), "right")
 			use_item(preload("res://player/Sword.tscn"), "left")
+			swingTimer = 0
+			$SwingSound.playing = true
+		
+		if swingTimer < 30:
+			swingTimer += 1
 	
 
 
@@ -94,6 +101,10 @@ func collision_loop():
 
 func player_death():
 	died = true
+	if !deathSoundPlayed:
+		$DeathSound.playing = true
+		deathSoundPlayed = true
+
 	$Animation.stop()
 	$BlinkAnimation.stop()
 	$DeathAnimation.play("death")
