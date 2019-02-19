@@ -90,14 +90,15 @@ func movement_loop(left, right):
 		velocity = Vector2(0, 0) # Reinitialize if has collided
 
 func collision_loop():
-	if get_slide_collision(0):
-		var collider = get_slide_collision(0).collider
-		if collider.get("TYPE") == "ENEMY":
-			player_death()
-	elif get_slide_collision(1):
-		var collider = get_slide_collision(0).collider
-		if collider.get("TYPE") == "ENEMY":
-			player_death()
+	if get_slide_count():
+		if get_slide_collision(0):
+			var collider = get_slide_collision(0).collider
+			if collider.get("TYPE") == "ENEMY":
+				player_death()
+		elif get_slide_collision(1):
+			var collider = get_slide_collision(0).collider
+			if collider.get("TYPE") == "ENEMY":
+				player_death()
 
 func player_death():
 	died = true
