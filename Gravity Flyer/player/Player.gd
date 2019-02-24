@@ -12,6 +12,7 @@ var died = false
 var swingTimer = 30
 var deathSoundPlayed = false
 var held = "none"
+var swiped = false
 
 func _ready():
 	$Sprite.visible = true
@@ -27,13 +28,15 @@ func _physics_process(delta):
 		controls_loop(left, right)
 		movement_loop(left, right)
 		collision_loop()
-	
-		if Input.is_action_just_pressed("swipe") and swingTimer >= 30:
+		
+		var swipeDetected = Input.is_action_just_pressed("swipe") or swiped
+		if swipeDetected and swingTimer >= 30:
 		# use_item(preload("res://items/Huff.tscn"))
 			use_item(preload("res://player/Sword.tscn"), "right")
 			use_item(preload("res://player/Sword.tscn"), "left")
 			swingTimer = 0
 			$SwingSound.playing = true
+			swiped = false
 		
 		if swingTimer < 30:
 			swingTimer += 1
@@ -113,8 +116,13 @@ func player_death():
 	$DeathAnimation.play("death")
 	set_collision_mask_bit(3, 3)
 
-func check_touch_input():
-	pass
-
 func _on_SwipeDetector_side_held(side):
 	held = side
+
+
+func _on_SwipeDetector_swiped_canceled(start_position):
+	swiped = false
+
+
+func _on_SwipeDetectorExternal_swiped(gesture):
+	swiped = true
