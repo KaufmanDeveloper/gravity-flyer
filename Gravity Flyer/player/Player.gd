@@ -11,6 +11,7 @@ var playingAnimation = "idleright"
 var died = false
 var swingTimer = 30
 var deathSoundPlayed = false
+var held = "none"
 
 func _ready():
 	$Sprite.visible = true
@@ -20,8 +21,8 @@ func _ready():
 
 func _physics_process(delta):
 	if !died:
-		var left = Input.is_action_pressed("ui_left")
-		var right = Input.is_action_pressed("ui_right")
+		var left = Input.is_action_pressed("ui_left") or held == "left"
+		var right = Input.is_action_pressed("ui_right") or held == "right"
 
 		controls_loop(left, right)
 		movement_loop(left, right)
@@ -51,6 +52,7 @@ func use_item(item, side):
 
 func controls_loop(left, right):
 	moveDirection.x = -int(left) + int(right)
+	
 	if left and !right and previousAnimation == "right":
 		previousAnimation = "left"
 		$Animation.play("idleleft")
@@ -110,3 +112,9 @@ func player_death():
 	$BlinkAnimation.stop()
 	$DeathAnimation.play("death")
 	set_collision_mask_bit(3, 3)
+
+func check_touch_input():
+	pass
+
+func _on_SwipeDetector_side_held(side):
+	held = side
