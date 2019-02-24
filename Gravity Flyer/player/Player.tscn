@@ -221,8 +221,6 @@ bus = "Master"
 
 [connection signal="side_held" from="SwipeDetector" to="." method="_on_SwipeDetector_side_held"]
 
-[connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
-
 [connection signal="swiped_canceled" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped_canceled"]
 
 [connection signal="swiped" from="SwipeDetectorExternal" to="." method="_on_SwipeDetectorExternal_swiped"]
