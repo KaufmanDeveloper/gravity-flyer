@@ -11,6 +11,8 @@ var playingAnimation = "idleright"
 var died = false
 var swingTimer = 30
 var deathSoundPlayed = false
+var held = "none"
+var swiped = false
 
 func _ready():
 	$Sprite.visible = true
@@ -20,19 +22,21 @@ func _ready():
 
 func _physics_process(delta):
 	if !died:
-		var left = Input.is_action_pressed("ui_left")
-		var right = Input.is_action_pressed("ui_right")
+		var left = Input.is_action_pressed("ui_left") or held == "left"
+		var right = Input.is_action_pressed("ui_right") or held == "right"
 
 		controls_loop(left, right)
 		movement_loop(left, right)
 		collision_loop()
-	
-		if Input.is_action_just_pressed("swipe") and swingTimer >= 30:
+		
+		var swipeDetected = Input.is_action_just_pressed("swipe") or swiped
+		if swipeDetected and swingTimer >= 30:
 		# use_item(preload("res://items/Huff.tscn"))
 			use_item(preload("res://player/Sword.tscn"), "right")
 			use_item(preload("res://player/Sword.tscn"), "left")
 			swingTimer = 0
 			$SwingSound.playing = true
+			swiped = false
 		
 		if swingTimer < 30:
 			swingTimer += 1
@@ -51,6 +55,7 @@ func use_item(item, side):
 
 func controls_loop(left, right):
 	moveDirection.x = -int(left) + int(right)
+	
 	if left and !right and previousAnimation == "right":
 		previousAnimation = "left"
 		$Animation.play("idleleft")
@@ -110,3 +115,14 @@ func player_death():
 	$BlinkAnimation.stop()
 	$DeathAnimation.play("death")
 	set_collision_mask_bit(3, 3)
+
+func _on_SwipeDetector_side_held(side):
+	held = side
+
+
+func _on_SwipeDetector_swiped_canceled(start_position):
+	swiped = false
+
+
+func _on_SwipeDetectorExternal_swiped(gesture):
+	swiped = true

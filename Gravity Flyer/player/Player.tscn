@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
 [ext_resource path="res://sounds/Swing.ogg" type="AudioStream" id=3]
 [ext_resource path="res://sounds/Death.ogg" type="AudioStream" id=4]
+[ext_resource path="res://system/SwipeDetector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://addons/swipe-detector/SwipeDetectorExternal.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -212,5 +214,15 @@ pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="SwipeDetector" parent="." index="8" instance=ExtResource( 5 )]
+
+[node name="SwipeDetectorExternal" parent="." index="9" instance=ExtResource( 6 )]
+
+[connection signal="side_held" from="SwipeDetector" to="." method="_on_SwipeDetector_side_held"]
+
+[connection signal="swiped_canceled" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped_canceled"]
+
+[connection signal="swiped" from="SwipeDetectorExternal" to="." method="_on_SwipeDetectorExternal_swiped"]
 
 
