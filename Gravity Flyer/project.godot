@@ -10,9 +10,10 @@ config_version=3
 
 [application]
 
-config/name="Gravity Flyer"
+config/name="Wo Dude"
 run/main_scene="res://system/StartMenu.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://images/Wo_Dude_Splash_Screen.png"
+config/icon="res://images/Wo_Dude_Icon.png"
 
 [autoload]
 
